@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Exercise on DOM (Pizza)</title>
+</head>
+
+<body>
+    <h1>Welcome to <span class="restaurantName"></span>!</h1>
+    <section class="intro">
+        Here are the pizzas that we offer: <br>
+        <article class="pizzas">
+
+        </article>
+    </section>
+    <button class="contactInfoButton">Show Contact Information</button>
+    <section id="contactInfo">
+    </section>
+    <script src="jquery.min.js"></script>
+    <script>
+
+        var restaurantInfo = {
+            name: "Oscar Oriental Pizza",
+            email: "support@oop.com.sg",
+            contactNumber: 64581122,
+            address: {
+                streetName: "123 Ang Mo Kio Street 60",
+                postalCode: 560123
+            }
+        }
+
+        var pizzas = [
+            {
+                type: "Chicken Supreme",
+                price: 6.50
+            },
+            {
+                type: "Hawaiian",
+                price: 5
+            },
+            {
+                type: "Pepperoni",
+                price: 7
+            }
+        ]
+
+        $(function () {
+            $(".restaurantName").text(restaurantInfo.name);
+
+            $(".pizzas").append('<ul>');
+            //Using the for loop
+            for (let i=0; i<pizzas.length; i++) {
+                $(".pizzas").append(` 
+                <li>${pizzas[i].type}  (${pizzas[i].price})</li>    
+            `)
+            }
+
+            $(".pizzas").append('</ul>');
+
+            $("#contactInfo").append(`Enquiries? You may email us at ${restaurantInfo.email} or contact us at <u>${restaurantInfo.contactNumber}</u><br>`);
+            $("#contactInfo").append(`You may also drop by our office at ${restaurantInfo.address.streetName} Singapore ( ${restaurantInfo.address.postalCode} )`);
+            $("#contactInfo").hide();
+
+            $(".contactInfoButton").click(function () {
+                if ($(".contactInfoButton").text().indexOf("Show")>=0) {
+                    $(".contactInfoButton").text("Hide Contact Information");
+                } else {
+                    $(".contactInfoButton").text("Show Contact Information");
+                }
+                $("#contactInfo").toggle();
+            })
+        });
+    </script>
+</body>
+
+</html>
