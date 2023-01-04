@@ -73,32 +73,32 @@ router.delete('/events/:id', function (req, res) {
 })
 
 router.get('/organizers', function (req, res) {
-    
+
     //Code to get all organisers from array in organizersController
     /* res.send(organizersController.getOrganizers()); */
-    
+
     //Code to get all organizers from MongoDB
-    db.getAllOrganizers(function(err, organizer){
+    db.getAllOrganizers(function (err, organizer) {
         res.send(organizer)
     });
 })
 
 router.post('/organizers', function (req, res) {
     var data = req.body;
-    
+
     var organizer = {
         name: data.name,
         username: data.username,
         company: data.company,
         password: data.password
     }
-    
+
     //Code to add organizer to array in organizersController 
     /* organizersController.addOrganizer(organizer);
     res.redirect('back'); */
 
     //Code to add organizer to MongoDB
-    db.addOrganizer(organizer,function(err, organizer){
+    db.addOrganizer(organizer, function (err, organizer) {
         res.redirect('back');
     });
 })
