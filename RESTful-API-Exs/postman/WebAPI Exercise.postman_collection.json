@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "f1fc1839-afc4-4c95-875a-c6e3ee645c0d",
+		"name": "WebAPI Exercise",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18746756"
+	},
+	"item": [
+		{
+			"name": "01-Add Timetable",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "day",
+							"value": "Thursday",
+							"type": "text"
+						},
+						{
+							"key": "start",
+							"value": "0900",
+							"type": "text"
+						},
+						{
+							"key": "end",
+							"value": "1100",
+							"type": "text"
+						},
+						{
+							"key": "module",
+							"value": "5e84527b008b224e10e699c7",
+							"type": "text"
+						},
+						{
+							"key": "tutor",
+							"value": "5e845543008b224e10e699c9",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/timetables",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"timetables"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "02-Retrieve All Timetable",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:3000/api/timetables",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"timetables"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "03-Retrieve Timetable by Tutor",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:3000/api/modules/:tutor",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"modules",
+						":tutor"
+					],
+					"variable": [
+						{
+							"key": "tutor",
+							"value": "5e8455c68479d84e10291b8e"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "04-Retrieve a Timetable",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:3000/api/timetables/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"timetables",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5e8456ac8479d84e10291b90"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
