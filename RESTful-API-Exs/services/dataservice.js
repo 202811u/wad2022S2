@@ -7,7 +7,7 @@ var moduleModel, timetableModel, tutorModel;
 
 var database = {
     connect: function () {
-        mongoose.connect('mongodb://localhost:27017/RESTExercises2', function (err) {
+        mongoose.connect('mongodb://localhost:27017/RESTExercises', function (err) {
             if (err == null) {
                 console.log("Connected to Mongo DB");
                 //initialize values
@@ -20,7 +20,7 @@ var database = {
                     day: String,
                     start: String,
                     end: String,
-                    m: {
+                    module: {
                         type: schema.Types.ObjectId,
                         ref:'modules'
                     },
@@ -50,19 +50,19 @@ var database = {
             day: d,
             start: s,
             end: e,
-            m: mid,
+            module: mid,
             tutor:  tid
         });
         newTimetable.save(callback);
     },
     getTimetables: function (callback) {
-        timetableModel.find({}).populate('m', ['code','name']).populate('tutor', ['name','office']).exec(callback);
+        timetableModel.find({}).populate('module', ['code','name']).populate('tutor', ['name','office']).exec(callback);
     },
     getTimetablesOfTutor: function (tid, callback) {
-        timetableModel.find({tutor: tid}).populate('m', 'code').exec(callback);
+        timetableModel.find({tutor: tid}).populate('module', 'code').exec(callback);
     },
     getTimetable: function (id, callback) {
-        timetableModel.findById(id).populate('m').populate('tutor').exec(callback);
+        timetableModel.findById(id).populate('module').populate('tutor').exec(callback);
     },
 };
 

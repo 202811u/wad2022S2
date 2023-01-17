@@ -45,7 +45,7 @@ router.get('/api/modules/:tutor', function (req, res) {
             var timetables = [];
             for (var i in timetable) {
                 var tt = timetable[i];
-                timetables.push({ "day": tt.day, "duration": tt.start + " to " + tt.end, "module code": tt.m.code });
+                timetables.push({ "day": tt.day, "duration": tt.start + " to " + tt.end, "module code": tt.module.code });
             }
 
             res.status(200).send(timetables);
@@ -60,7 +60,7 @@ router.get('/api/timetables/:id', function (req, res) {
             res.status(500).send("Error retrieving timetable");
         } else {
             var tutor = timetable.tutor;
-            var module = timetable.m;
+            var module = timetable.module;
             res.status(200).send("This module - " + module.name + " is taught on " + timetable.day + " from " + timetable.start + " to " +
                 timetable.end + ". The module tutor is " + tutor.name + " and his/her office is at " + tutor.office + ".");
         }
