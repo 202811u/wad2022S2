@@ -20,7 +20,11 @@ var database = {
                     end: {
                         date: String,
                         time: String
-                    }
+                    },
+                    organizer: {
+                        type: schema.Types.ObjectId,
+                        ref: 'organizers'
+                    },
                 });
 
                 organizerSchema = schema({
@@ -40,9 +44,12 @@ var database = {
         })
     },
     getAllEvents: function (callback) {
-        eventModel.find({}, callback);
+        // eventModel.find({}, callback);
+        // eventModel.find({}).populate('organizer').exec(callback);
+        // eventModel.find({}).populate('organizer','company').exec(callback);
+        eventModel.find({}).populate('organizer',['company','name']).exec(callback);
     },
-    addEvent: function (n, d, sd, st, ed, et, callback) {
+    addEvent: function (n, d, sd, st, ed, et, oid, callback) {
         var newEvent = new eventModel({
             name: n,
             description: d,
@@ -53,12 +60,14 @@ var database = {
             end: {
                 date: ed,
                 time: et
-            }
+            },
+            organizer: oid
         });
         newEvent.save(callback);
     },
     getEvent: function (id, callback) {
-        eventModel.findById(id, callback);
+        // eventModel.findById(id, callback);
+        eventModel.findById(id).populate('organizer','company').exec(callback);
     },
     updateEvent: function (id, n, d, sd, st, ed, et, callback) {
         var updatedEvent = {

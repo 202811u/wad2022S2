@@ -8,6 +8,7 @@ $(function() {
         method: "get"
     }).done(
         function (data) {
+            $(".organizerCompany").text(data.organizer.company);
             $('#name').val(data.name);
             $('#description').val(data.description);
             $('#startDate').val(data.start.date);
